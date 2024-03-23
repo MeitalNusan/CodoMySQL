@@ -1,0 +1,37 @@
+.gridProducts{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,230px);
+    gap:80px;
+    padding-top: 140px;
+    justify-content: center;
+    }
+
+/* .elementos{
+    
+    display: flex;
+    flex-direction: column;
+     
+} */
+
+p{
+  font-size: 18px;
+}
+.imgProducts{
+    width: 280px;
+    height: 300px;
+}
+
+
+
+@media (max-width:600px) {
+    .gridProducts{
+        margin-top: 10px;
+        grid-template-columns: 100%;
+    }
+    
+    .imgProducts{
+    width: 360px;
+    height: 380px;
+}
+  }
+
