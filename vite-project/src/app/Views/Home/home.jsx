@@ -1,17 +1,8 @@
 import "../Home/cssHome.css"
 import logoAdidas from "../../img/logoAdidas.jpg"
-import camperaAdidas from "../../img/CamperaAdidas.jpg"
-import pelotaFutbol from "../../img/messiPelota.jpg"
-import logoDiadora from "../../img/logoDiadora.jpg"
-import logoOlymp from "../../img/olympikuslogo.jpg"
-import zapaOlympikus from "../../img/lineacorrer.png"
-import zapaOlym from "../../img/zapaOlym.png"
-import zapaDiadora from "../../img/zapaDiadora1.jpg"
-import zapaDiadora2 from "../../img/diadora2.jpg"
+import logoDiadora from "../../img/logoDiadora.jpg" 
 import logoAthix from "../../img/logoAthix.jpg"
 import logoNB from "../../img/logoNB.jpg"
-import zapaNB from "../../img/zapaNB.jpg"
-import tarjetatuya from "../../img/tarjetatuya.jpg"
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getDocs } from "firebase/firestore"
