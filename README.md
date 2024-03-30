@@ -25,4 +25,5 @@ npm init (crea el proyectoel package.json) o npm init -y  (para que le de yes a 
 node (verificar si ya no esta instalado)
 axios
 no olvidar agregar en el package abajo de "name":"...", "type":"module",
+instalar express
 
