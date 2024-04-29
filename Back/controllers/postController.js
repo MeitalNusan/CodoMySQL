@@ -17,7 +17,17 @@ export const getPost = async (req, res) =>{
         res.json(post)
     } catch (error) {
         res.json({message:error.message})
+    } 
+}
+
+
+export const createPost = async (req, res) => {
+    try {
+        await postModel.create(req.body)
+        res.json({
+            "message": "registro creado"
+        })
+    } catch (error) {
+        res.json({message: error.message})
     }
-
-
 }
