@@ -31,3 +31,18 @@ export const createPost = async (req, res) => {
         res.json({message: error.message})
     }
 }
+
+export const updatePost =async (req, res) =>{
+    try {
+       
+        await postModel.update(req.body,{
+            where:{id:req.params.id}
+        })
+        res.json({
+            "message": "registro modificado correctamente"
+        })
+    } catch (error) {
+        res.json({message:error.message})
+        
+    }
+}
