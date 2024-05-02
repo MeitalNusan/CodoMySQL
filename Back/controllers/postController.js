@@ -46,3 +46,18 @@ export const updatePost =async (req, res) =>{
         
     }
 }
+
+export const deletePost = async (req, res) =>{
+    try {
+        await postModel.destroy({
+        where:{id:req.params.id}
+        })
+        res.json({
+            "message": "registro eliminado correctamente"
+        })
+        
+    } catch (error) {
+        res.json({message:error.message})
+        
+    }
+}
