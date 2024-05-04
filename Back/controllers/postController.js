@@ -50,7 +50,7 @@ export const updatePost =async (req, res) =>{
 export const deletePost = async (req, res) =>{
     try {
         await postModel.destroy({
-        where:{id:req.params.id}
+        where:{id:req.params.id}, //si no funciona, probar sacando esta coma
         })
         res.json({
             "message": "registro eliminado correctamente"
