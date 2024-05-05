@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const API = "http://localhost:8000/post"
+const API = "http://localhost:8000/post/"
 
 const Show = () => {
 
@@ -32,7 +32,29 @@ const Show = () => {
                   <i className="fa-regular fa-plus"></i>     
                 </Link>
                 <table className="table">
-                    
+                    <thead>
+                        <tr>
+                            <th>Title</th> 
+                            <th>Content</th> 
+                            <th>Actions</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {posts.map((post=>(
+                            <tr key={post.id}>
+                                <td>{post.title}</td>
+                                <td>{post.content}</td>
+                                <td>
+                                    <Link to={`edit/${post.id}`} className="btn btn-primary">
+                                        <i className="fa fa-edit"></i>
+                                    </Link>
+                                    <button onClick={()=>deletePost(post.id)} className="btn btn-danger">
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        )))}
+                    </tbody>
                 </table>
             </div>
         </div>
