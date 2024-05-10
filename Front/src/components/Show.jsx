@@ -1,6 +1,10 @@
 import axios from "axios"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
+
+
+
 
 const API = "http://localhost:8000/post/"
 
@@ -18,6 +22,27 @@ const Show = () => {
         getAllPost()
     }
 
+    const confirmarDelete = (id) =>{
+        Swal.fire({
+            title: "Estas seguro?",
+            text: "No se podrá revertir",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                deletePost(id)
+              Swal.fire({
+                title: "Eliminado!",
+                text: "Tu documento ha sido eliminado",
+                icon: "success",
+              });
+            }
+          });
+        } 
+    
 
     useEffect(()=>{
         getAllPost()
@@ -48,8 +73,8 @@ const Show = () => {
                                     <Link to={`edit/${post.id}`} className="btn btn-primary">
                                         <i className="fa fa-edit"></i>
                                     </Link>
-                                    <button onClick={()=>deletePost(post.id)} className="btn btn-danger">
-                                        <i className="fa fa-trash"></i>
+                                    <button className="btn btn-danger" onClick={() => confirmarDelete(post.id)}>
+                                         <i className="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
