@@ -2,6 +2,8 @@ import axios from "axios"
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"
+import { Spinner } from "./Spinner"
+
 
 
 
@@ -9,9 +11,10 @@ import Swal from "sweetalert2"
 const API = "http://localhost:8000/post/"
 
 const Show = () => {
-
     const [posts, setPosts] = useState([])
+    const [cargando, setCargando] = useState(true)
 
+ 
     const getAllPost= async() =>{
         const res= await axios.get(API)
         setPosts(res.data)
@@ -45,9 +48,14 @@ const Show = () => {
     
 
     useEffect(()=>{
+        setCargando(true)
         getAllPost()
+        setCargando(false)
     },[])
 
+    if(cargando){
+        return <Spinner/>
+    }
     return(
        <div className="container">
         <div className="row">

@@ -1,12 +1,15 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { Spinner } from "./Spinner"
 
 
 
 const Edit = ()=>{
     const [titulo, setTitulo] = useState("")
     const [contenido, setContenido] = useState("")
+    const [cargando, setCargando] = useState(true)
+
 
     const navigate = useNavigate()
     const API = "http://localhost:8000/post/"
@@ -23,9 +26,16 @@ const Edit = ()=>{
 
 
     useEffect(()=>{
-        getPostById()
-    },[])
+         setCargando(true)
+         getPostById()
+         setCargando(false)
+     },[])
 
+
+    if(cargando){
+        return <Spinner/>
+    }
+     
 
     const update = async (e)=>{
         e.preventDefault()
