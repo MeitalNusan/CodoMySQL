@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"
 import { Spinner } from "./Spinner"
+import { Buscador } from "./Buscador";
 
 
 
@@ -59,6 +60,7 @@ const Show = () => {
     return(
        <div className="container">
         <div className="row">
+        <Buscador/>
         <small>Create Post </small>
             <div className="col">     
                 <Link to="/create" className="btn btn-primary mt-2">
