@@ -6,7 +6,7 @@ import { Spinner } from "./Spinner"
 import { Buscador } from "./Buscador";
 
 
-
+//no use useQuery para los errores
 
 
 const API = "http://localhost:8000/post/"

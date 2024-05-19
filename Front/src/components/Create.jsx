@@ -22,8 +22,6 @@ const Create = ()=>{
         navigate("/")
     }
 
-   
-
 
     return(
        <div>
