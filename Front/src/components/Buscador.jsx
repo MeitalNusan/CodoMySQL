@@ -1,13 +1,15 @@
 import { FaSearch } from "react-icons/fa";
 import "./buscador.css"
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
+ 
 
 
 export const Buscador = () =>{
     const [txtBuscador, setTxtBuscador] = useState("")
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,7 +21,7 @@ export const Buscador = () =>{
             <div className="cajaBuscador">
                 <input 
                 value={txtBuscador}
-                onChange={(e)=>setTxtBuscador(e.target.value.toUpperCase())}
+                onChange={(e)=>setTxtBuscador(e.target.value)}
                 type="text"
                 className="inputBuscador"
                 />

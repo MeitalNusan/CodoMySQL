@@ -8,3 +8,4 @@ const db = new Sequelize("db_always", "root","",{
 })
 
 export default db
+ 
