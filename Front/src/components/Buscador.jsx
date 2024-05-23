@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useQuery} from "react-query"
 import { Spinner } from "./Spinner";
- 
+  
  //use useQuery para definir error, loading y data
 
 export const Buscador = () =>{
@@ -19,10 +19,14 @@ export const Buscador = () =>{
 
       // caputrar url
     const useQuerys = () =>{
+        const location = useLocation()
+
         return new URLSearchParams(useLocation().search)
     }
 
     const query = useQuerys()
+    const location = useLocation()
+
     const search = query.get("search")
     console.log(search)
     //
@@ -30,7 +34,6 @@ export const Buscador = () =>{
     const [txtBuscador, setTxtBuscador] = useState("")
     const { isLoading, error, data } = useQuery('users', fetchUsers);
     const navigate = useNavigate()
-    const location = useLocation()
 
 
     const handleSubmit = (e) => {
