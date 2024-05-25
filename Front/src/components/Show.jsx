@@ -3,25 +3,20 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2"
 import { Spinner } from "./Spinner"
-import { Buscador } from "./Buscador";
+import { Buscador } from "./Buscador"; 
+import { useQuery } from "../Hooks/useQuery.jsx";
   
 
 const Show = () => {
     const [posts, setPosts] = useState([])
     const [cargando, setCargando] = useState(true)
 
-      // caputrar url
-    const useQuery = () =>{
-        const location = useLocation()
-        return new URLSearchParams(useLocation().search)
-    }
-
     const query = useQuery()
     const search = query.get("search")
     
     
     const getAllPost = async () => {
-        const searchURL = search? `https://rickandmortyapi.com/api/character/?name=` + search:'https://rickandmortyapi.com/api/character/';
+        const searchURL = search?"https://rickandmortyapi.com/api/character/?name=&status="+search  :'https://rickandmortyapi.com/api/character/';
 
         try {
             const res = await axios.get(searchURL);

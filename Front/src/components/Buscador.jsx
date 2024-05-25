@@ -4,32 +4,19 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {useQuery} from "react-query"
 import { Spinner } from "./Spinner";
+import axios from "axios";
   
- //use useQuery para definir error, loading y data
-
+ 
 export const Buscador = () =>{
 
     const fetchUsers = async () => {
-        const response = await fetch('http://localhost:8000/post/');
-        if (!response.ok) {
-          throw new Error('Failed to fetch users');
-        }
-        return response.json();
-      };
-
-      // caputrar url
-    const useQuerys = () =>{
-        const location = useLocation()
-
-        return new URLSearchParams(useLocation().search)
-    }
-
-    const query = useQuerys()
-    const location = useLocation()
-
-    const search = query.get("search")
-    console.log(search)
-    //
+            try {
+              const response = await axios.get("https://rickandmortyapi.com/api/character/")//'http://localhost:8000/post/'//;;
+              return response.data.results;
+            } catch (error) {
+              throw new Error('Failed to fetch users');
+            }
+          };
 
     const [txtBuscador, setTxtBuscador] = useState("")
     const { isLoading, error, data } = useQuery('users', fetchUsers);
@@ -47,7 +34,7 @@ export const Buscador = () =>{
     
    
     return(
-    (data) &&(
+  data && data.length > 0 && (
         <form className="containerBuscador" onSubmit={handleSubmit}>
             <div className="cajaBuscador">
                 <input 
