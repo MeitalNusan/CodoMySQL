@@ -3,20 +3,27 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2"
 import { Spinner } from "./Spinner"
-import { Buscador } from "./Buscador"; 
-import { useQuery } from "../Hooks/useQuery.jsx";
+import { Buscador } from "./Buscador";
+import "./Show.css"
+
   
 
 const Show = () => {
     const [posts, setPosts] = useState([])
     const [cargando, setCargando] = useState(true)
 
+      // caputrar url
+    const useQuery = () =>{
+        const location = useLocation()
+        return new URLSearchParams(useLocation().search)
+    }
+
     const query = useQuery()
     const search = query.get("search")
     
     
     const getAllPost = async () => {
-        const searchURL = search?"https://rickandmortyapi.com/api/character/?name=&status="+search  :'https://rickandmortyapi.com/api/character/';
+        const searchURL = search? `https://rickandmortyapi.com/api/character/?name=` + search:'https://rickandmortyapi.com/api/character/';
 
         try {
             const res = await axios.get(searchURL);
@@ -29,9 +36,8 @@ const Show = () => {
     }
 
 
-    const deletePost = async(id)=>{
-        await axios.delete(`https://rickandmortyapi.com/api/character/${id}`)
-        getAllPost()
+    const deletePost = (id)=>{
+        setPosts(posts.filter(post => post.id !== id));   
     }
 
     const confirmarDelete = (id) =>{
@@ -65,27 +71,29 @@ const Show = () => {
         return <Spinner/>
     }
     return(
-       <div className="container">
-        <div className="row">
-        <Buscador/>
-        <small>Create Post </small>
-            <div className="col">     
-                <Link to="/create" className="btn btn-primary mt-2">
+       <div className="conteiner">
+        <div>
+        {/* <small>Create Post </small> */}
+            <div>     
+                {/* <Link to="/create" className="btn btn-primary mt-2">
                   <i className="fa-regular fa-plus"></i>     
-                </Link>
+                </Link> */}
+                <br />
+                <br />
+                <Buscador/>
+                 <br />
                 <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Title</th> 
-                            <th>Content</th> 
-                            <th>Actions</th> 
-                        </tr>
-                    </thead>
+                  
                     <tbody>
                         {posts.map((post=>(           
                             <tr key={post.id}>
                                 <td>{post.name}</td>
-                                <td><img src={post.image} alt="" /></td>
+                                <td>
+                                        <Link to={`card/${post.id}`}>
+                                            <img src={post.image} alt={post.name} />
+                                        </Link>
+                                    </td>
+                                
                                 {/* <td>{post.content}</td> */}
                                 <td>
                                     <Link to={`edit/${post.id}`} className="btn btn-primary">
