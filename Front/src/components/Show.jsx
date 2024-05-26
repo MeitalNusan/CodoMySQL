@@ -71,45 +71,36 @@ const Show = () => {
         return <Spinner/>
     }
     return(
-       <div className="conteiner">
-        <div>
-        {/* <small>Create Post </small> */}
-            <div>     
-                {/* <Link to="/create" className="btn btn-primary mt-2">
-                  <i className="fa-regular fa-plus"></i>     
-                </Link> */}
-                <br />
-                <br />
-                <Buscador/>
-                 <br />
-                <table className="table">
-                  
-                    <tbody>
+       <div className="conteiner">  
+              <h1 className="title">Rick And Morty</h1> 
+                    <section className="table">
                         {posts.map((post=>(           
-                            <tr key={post.id}>
-                                <td>{post.name}</td>
-                                <td>
-                                        <Link to={`card/${post.id}`}>
-                                            <img src={post.image} alt={post.name} />
-                                        </Link>
-                                    </td>
-                                
-                                {/* <td>{post.content}</td> */}
-                                <td>
-                                    <Link to={`edit/${post.id}`} className="btn btn-primary">
+                            <div key={post.id}>
+                                <Link to={`card/${post.id}`} className="name">
+                                     <p>{post.name}</p>
+                                </Link>
+                                <ul>
+                                    <Link to={`card/${post.id}`}>
+                                         <img className="img" src={post.image}  />
+                                    </Link>
+                                </ul>
+                               
+                                    <div> 
+                                     <Link to={`edit/${post.id}`} className="btn btn-primary">
                                         <i className="fa fa-edit"></i>
                                     </Link>
                                     <button className="btn btn-danger" onClick={() => confirmarDelete(post.id)}>
                                          <i className="fa-solid fa-trash"></i>
                                     </button>
-                                </td>
-                            </tr>       
+
+                                    </div>
+                                  
+                                 
+                            </div>       
                         )))}
-                    </tbody>
-                </table>
+                    </section>
             </div>
-        </div>
-       </div>
+       
     ) 
     
 }

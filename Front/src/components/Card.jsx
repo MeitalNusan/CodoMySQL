@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { Spinner } from "./Spinner"
+import "./buscador.css"
 
 export const Card =() =>{
     const [post, setPost] = useState({ name: "", image: "" })
@@ -33,11 +34,10 @@ export const Card =() =>{
 
 
     return(
-        <div className="mb-3">
-           <h1>{post.name}</h1>
-           <p><img src={post.image}/></p>
+        <div className="car">
+           <h3>{post.name}</h3>
+           <p><img height={360} src={post.image}/></p>
            <p>Status: {post.status}</p>
-           <Link  className="btn btn-primary" to="/">Inicio</Link> 
         </div>     
              
     )

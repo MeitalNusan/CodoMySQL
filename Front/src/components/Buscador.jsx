@@ -38,6 +38,7 @@ export const Buscador = () =>{
         <form className="containerBuscador" onSubmit={handleSubmit}>
             <div className="cajaBuscador">
                 <input 
+                placeholder="Search for name"
                 value={txtBuscador}
                 onChange={(e)=>setTxtBuscador(e.target.value)}
                 type="text"
